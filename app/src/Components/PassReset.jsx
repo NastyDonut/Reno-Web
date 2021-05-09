@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "@reach/router";
 
-const PasswordReset = () => {
+const PassReset = () => {
   const [email, setEmail] = useState("");
   const [emailHasBeenSent, setEmailHasBeenSent] = useState(false);
   const [error, setError] = useState(null);
@@ -15,7 +15,7 @@ const PasswordReset = () => {
   const sendResetEmail = event => {
     event.preventDefault();
   };
-  
+
   return (
     <div className="mt-8">
       <h1 className="text-xl text-center font-bold mb-3">
@@ -62,4 +62,4 @@ const PasswordReset = () => {
   );
 };
 
-export default PasswordReset;
+export default PassReset;
