@@ -2,8 +2,50 @@ import React, { useState } from "react";
 import { Link } from "@reach/router";
 
 import { auth } from "../firebase/firebase";
+import {
+  Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Paper,
+  Box, Grid, Typography, makeStyles
+} from '@material-ui/core'
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: '100vh',
+  },
+  error: {
+    color: "red",
+  },
+  image: {
+    backgroundImage: 'url(https://source.unsplash.com/random)',
+    backgroundRepeat: 'no-repeat',
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  },
+  paper: {
+    margin: theme.spacing(8, 4),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  subheader: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
+
 
 const PassReset = () => {
+  const classes = useStyles();
+
   const [email, setEmail] = useState("");
   const [emailHasBeenSent, setEmailHasBeenSent] = useState(false);
   const [error, setError] = useState(null);
@@ -30,42 +72,53 @@ const PassReset = () => {
   };
 
   return (
-    <div className="mt-8">
+    <div className={classes.paper}>
       <h1 className="text-xl text-center font-bold mb-3">
         Reset your Password
       </h1>
+      <Typography className={classes.subheader} component="h5" variant="h10">
+        Need to perform a total renovation on your Password? Not a problem!
+      </Typography>
       <div className="border border-blue-300 mx-auto w-11/12 md:w-2/4 rounded py-8 px-4 md:px-8">
-        <form action="">
+        <form className={classes.form} action="">
           {emailHasBeenSent && (
             <div className="py-3 bg-green-400 w-full text-white text-center mb-3">
               An email has been sent to you!
             </div>
           )}
           {error !== null && (
-            <div className="py-3 bg-red-600 w-full text-white text-center mb-3">
-              {error}
+            <div className={classes.error}>
+              There was an issue resetting your password.
+              Verify your email address and try again
             </div>
           )}
-          <label htmlFor="userEmail" className="w-full block">
-            Email:
-          </label>
-          <input
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
             type="email"
             name="userEmail"
             id="userEmail"
             value={email}
             placeholder="Input your email"
             onChange={onChangeHandler}
-            className="mb-3 w-full px-1 py-2"
+            label="Email Address"
+            autoComplete="email"
+            autoFocus
           />
-          <button
-            className="w-full bg-blue-400 text-white py-3"
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
             onClick={event => {
               sendResetEmail(event);
             }}
           >
             Send me a reset link
-          </button>
+          </Button>
         </form>
         <Link
          to ="/"
