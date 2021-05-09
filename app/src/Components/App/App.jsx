@@ -1,29 +1,17 @@
 import React from 'react';
 
-import { Router } from "@reach/router";
-import SignIn from "../SignIn";
-import SignUp from "../SignUp";
-import ProfilePage from "../ProfilePage";
-import PassReset from "../PassReset";
+import UserProvider from '../../providers/UserProvider';
+import Application from '../Application';
 
 
 
 
 const App = () => {
-  const user = null;
-
 
   return (
-    user ?
-    <ProfilePage />
-  :
-    <Router>
-      <SignUp path="signUp" />
-      <SignIn path="/" />
-      <PassReset path = "passwordReset" />
-
-    </Router>
-
+    <UserProvider>
+      <Application />
+    </UserProvider>
   );
 };
 
