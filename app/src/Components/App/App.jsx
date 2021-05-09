@@ -4,8 +4,7 @@ import { Router } from "@reach/router";
 import SignIn from "../SignIn";
 import SignUp from "../SignUp";
 import ProfilePage from "../ProfilePage";
-// import PasswordReset from "./PasswordReset";
-  // <PasswordReset path = "passwordReset" />
+import PassReset from "../PassReset";
 
 
 
@@ -21,6 +20,7 @@ const App = () => {
     <Router>
       <SignUp path="signUp" />
       <SignIn path="/" />
+      <PassReset path = "passwordReset" />
 
     </Router>
 
