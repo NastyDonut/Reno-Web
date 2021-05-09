@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignInSide = () => {
+const SignIn = () => {
   const classes = useStyles();
 
   const [email, setEmail] = useState('');
@@ -162,5 +162,5 @@ const SignInSide = () => {
   );
 }
 
-export default SignInSide;
+export default SignIn;
 
