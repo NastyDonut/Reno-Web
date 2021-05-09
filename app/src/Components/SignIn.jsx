@@ -1,4 +1,6 @@
-import React from 'react';
+import React , {useState} from "react";
+import { Link as RouterLink } from "@reach/router";
+
 
 import {
   Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link,
@@ -50,8 +52,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignInSide = () => {
+const SignIn = () => {
   const classes = useStyles();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const signInWithEmailAndPasswordHandler = 
+          (event,email, password) => {
+              event.preventDefault();
+  };
+
+  const onChangeHandler = (event) => {
+    const {name, value} = event.currentTarget;
+
+    if(name === 'userEmail') {
+        setEmail(value);
+    }
+    else if(name === 'userPassword'){
+      setPassword(value);
+    }
+  };
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -65,15 +86,19 @@ const SignInSide = () => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+          {error !== null && <div className = "py-4 bg-red-600 w-full text-white text-center mb-3">{error}</div>}
+
           <form className={classes.form} noValidate>
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="email"
+              name="userEmail"
+              value = {email}
+              id="userEmail"
+              onChange = {(event) => onChangeHandler(event)}
               label="Email Address"
-              name="email"
               autoComplete="email"
               autoFocus
             />
@@ -82,10 +107,13 @@ const SignInSide = () => {
               margin="normal"
               required
               fullWidth
-              name="password"
+              name="userPassword"
+              value = {password}
+              placeholder="Your Password"
+              id="userPassword"
+              onChange = {(event) => onChangeHandler(event)}
               label="Password"
               type="password"
-              id="password"
               autoComplete="current-password"
             />
             <FormControlLabel
@@ -98,19 +126,30 @@ const SignInSide = () => {
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}
             >
               Sign In
             </Button>
+
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}
+            >
+              Sign In with Google
+            </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+              <RouterLink to="passwordReset" variant="body2">
                   Forgot password?
-                </Link>
+                </RouterLink>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <RouterLink to="signUp" variant="body2">
                   {"Don't have an account? Sign Up"}
-                </Link>
+                </RouterLink>
               </Grid>
             </Grid>
             <Box mt={5}>
@@ -123,5 +162,5 @@ const SignInSide = () => {
   );
 }
 
-export default SignInSide;
+export default SignIn;
 

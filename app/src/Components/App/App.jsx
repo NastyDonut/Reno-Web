@@ -1,19 +1,29 @@
 import React from 'react';
 
-// import Button from '@material-ui/core/Button';
-import SignInSide from '../SignIn';
+import { Router } from "@reach/router";
+import SignIn from "../SignIn";
+import SignUp from "../SignUp";
+// import ProfilePage from "./ProfilePage";
+// import PasswordReset from "./PasswordReset";
+// <PasswordReset path = "passwordReset" />
 
 
 
 
 const App = () => {
+  const user = null;
+
+
   return (
-    <div>
-      <div>
-      {/* <Button variant="contained"> b</Button> */}
-      <SignInSide />
-      </div>
-    </div>
+    user ?
+    <div>Profile Page</div>
+    // <ProfilePage />
+  :
+    <Router>
+      <SignUp path="signUp" />
+      <SignIn path="/" />
+    </Router>
+
   );
 };
 
