@@ -3,9 +3,9 @@ import React from 'react';
 import { Router } from "@reach/router";
 import SignIn from "../SignIn";
 import SignUp from "../SignUp";
-// import ProfilePage from "./ProfilePage";
+import ProfilePage from "../ProfilePage";
 // import PasswordReset from "./PasswordReset";
-// <PasswordReset path = "passwordReset" />
+  // <PasswordReset path = "passwordReset" />
 
 
 
@@ -16,12 +16,12 @@ const App = () => {
 
   return (
     user ?
-    <div>Profile Page</div>
-    // <ProfilePage />
+    <ProfilePage />
   :
     <Router>
       <SignUp path="signUp" />
       <SignIn path="/" />
+
     </Router>
 
   );
