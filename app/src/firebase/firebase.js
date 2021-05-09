@@ -4,7 +4,10 @@ import "firebase/auth";
 import "firebase/firestore";
 
 
-// TODO: Replace the following with your app's Firebase project configuration
+
+const provider = new firebase.auth.GoogleAuthProvider();
+
+
 // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
 const firebaseConfig = {
   apiKey: "AIzaSyA2Q_ogamOcLnJi-zUf2TeRfs96F0wxBNE",
@@ -21,3 +24,6 @@ firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+export const signInWithGoogle = () => {
+  auth.signInWithPopup(provider);
+};
